@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LampActivity">
+
+    <TextView
+        android:id="@+id/status_text"
+        android:layout_width="285dp"
+        android:layout_height="24dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="11dp" />
+
+    <ListView
+        android:id="@+id/bridge_discovery_result_list"
+        android:layout_width="285dp"
+        android:layout_height="236dp"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="48dp" />
+
+    <TextView
+        android:id="@+id/bridge_ip_text"
+        android:layout_width="283dp"
+        android:layout_height="22dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="293dp" />
+
+    <ImageView
+        android:id="@+id/pushlink_image"
+        android:layout_width="79dp"
+        android:layout_height="66dp"
+        tools:layout_editor_absoluteX="253dp"
+        tools:layout_editor_absoluteY="327dp"
+        tools:srcCompat="@tools:sample/avatars[1]" />
+
+    <Button
+        android:id="@+id/bridge_discovery_button"
+        android:layout_width="199dp"
+        android:layout_height="68dp"
+        android:text="Button"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="327dp" />
+
+    <Button
+        android:id="@+id/randomize_lights_button"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:text="Button"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="415dp" />
+</android.support.constraint.ConstraintLayout>
