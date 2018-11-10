@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "686618822565",
+    "firebase_url": "https://iot-sb.firebaseio.com",
+    "project_id": "iot-sb",
+    "storage_bucket": "iot-sb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686618822565:android:18e9d2db812b08cc",
+        "android_client_info": {
+          "package_name": "sb.iot.sb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686618822565-48b06qcm0dest7lh278k6hrv7mn6m3n9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sb.iot.sb",
+            "certificate_hash": "53397ea0720b3027832c8f26d4b7bf01cb5378cb"
+          }
+        },
+        {
+          "client_id": "686618822565-90brnekj7p2vtdp4a859jg5j6721oui6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTy9ZXwszUbPHQIOfoT95o4WknztJfdWM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686618822565-90brnekj7p2vtdp4a859jg5j6721oui6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
