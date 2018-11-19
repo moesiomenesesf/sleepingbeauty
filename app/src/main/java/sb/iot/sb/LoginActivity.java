@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -74,6 +75,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     //Firebase
     private FirebaseAuth mAuth;
 
+    private ProgressDialog mProgressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +102,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 attemptLogin();
+            }
+        });
+
+        Button mEmailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
+
+        final Intent intent = new Intent(LoginActivity.this,SignupActivity.class);
+
+        mEmailSignUpButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(intent);
             }
         });
 
@@ -201,6 +216,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         final Intent intent = new Intent(this, HomeActivity.class);
 
+        mProgressDialog = ProgressDialog.show(LoginActivity.this, "Login", "Realizando login");
+        mProgressDialog.setCanceledOnTouchOutside(false); // main method that force user cannot click outside
+        mProgressDialog.setCancelable(true);
+
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
@@ -208,12 +228,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
 
+                        mProgressDialog.dismiss();
+
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
 
                             FirebaseUser user = mAuth.getCurrentUser();
 
-                            Toast.makeText(LoginActivity.this, "Bem vindo " + user.getEmail(),
+                            Toast.makeText(LoginActivity.this, "Usuário criado com sucesso",
                                     Toast.LENGTH_SHORT).show();
 
 
