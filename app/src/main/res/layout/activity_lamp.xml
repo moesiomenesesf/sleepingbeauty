@@ -1,55 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LampActivity">
+    tools:context="sb.iot.sb.LampActivity"
+    android:padding="16dp"
+    android:background="#ffffff">
 
     <TextView
         android:id="@+id/status_text"
-        android:layout_width="285dp"
-        android:layout_height="24dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="11dp" />
-
-    <ListView
-        android:id="@+id/bridge_discovery_result_list"
-        android:layout_width="285dp"
-        android:layout_height="236dp"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="48dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        tools:text="Press the link button to authenticate." />
 
     <TextView
         android:id="@+id/bridge_ip_text"
-        android:layout_width="283dp"
-        android:layout_height="22dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="293dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        tools:text=" Bridge IP:192.168.1.1:600026" />
 
     <ImageView
         android:id="@+id/pushlink_image"
-        android:layout_width="79dp"
-        android:layout_height="66dp"
-        tools:layout_editor_absoluteX="253dp"
-        tools:layout_editor_absoluteY="327dp"
-        tools:srcCompat="@tools:sample/avatars[1]" />
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitXY"
+        android:visibility="visible"
+        app:srcCompat="@drawable/pushlink_image" />
+
+    <ListView
+        android:id="@+id/bridge_discovery_result_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/sleepy_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Horário de Sono Programado"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/sleep_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Usuário dormiu"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/bridge_discovery_button"
-        android:layout_width="199dp"
-        android:layout_height="68dp"
-        android:text="Button"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="327dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Re-run bridge discovery" />
 
-    <Button
-        android:id="@+id/randomize_lights_button"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:text="Button"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="415dp" />
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

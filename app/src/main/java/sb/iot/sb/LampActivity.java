@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.philips.lighting.hue.sdk.wrapper.HueLog;
+import com.philips.lighting.hue.sdk.wrapper.Persistence;
 import com.philips.lighting.hue.sdk.wrapper.connection.BridgeConnection;
 import com.philips.lighting.hue.sdk.wrapper.connection.BridgeConnectionCallback;
 import com.philips.lighting.hue.sdk.wrapper.connection.BridgeConnectionType;
@@ -38,7 +40,7 @@ import java.util.List;
 import java.util.Random;
 
 public class LampActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
-    private static final String TAG = "HueQuickStartApp";
+    private static final String TAG = "SBApplication";
 
     private static final int MAX_HUE = 65535;
 
@@ -53,7 +55,8 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
     private ListView bridgeDiscoveryListView;
     private TextView bridgeIpTextView;
     private View pushlinkImage;
-    private Button randomizeLightsButton;
+    private Button sleepyButton;
+    private Button sleepButton;
     private Button bridgeDiscoveryButton;
 
     enum UIState {
@@ -78,16 +81,20 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
         pushlinkImage = findViewById(R.id.pushlink_image);
         bridgeDiscoveryButton = (Button)findViewById(R.id.bridge_discovery_button);
         bridgeDiscoveryButton.setOnClickListener(this);
-        randomizeLightsButton = (Button)findViewById(R.id.randomize_lights_button);
-        randomizeLightsButton.setOnClickListener(this);
+        sleepyButton = (Button)findViewById(R.id.sleepy_button);
+        sleepyButton.setOnClickListener(this);
+        sleepButton = (Button)findViewById(R.id.sleep_button);
+        sleepButton.setOnClickListener(this);
 
         // Connect to a bridge or start the bridge discovery
         String bridgeIp = getLastUsedBridgeIp();
         if (bridgeIp == null) {
-            startBridgeDiscovery();
+        startBridgeDiscovery();
         } else {
             connectToBridge(bridgeIp);
         }
+
+
     }
 
     /**
@@ -97,8 +104,8 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
     private String getLastUsedBridgeIp() {
         List<KnownBridge> bridges = KnownBridges.getAll();
 
-        if (bridges.isEmpty()) {
-            return null;
+       if (bridges.isEmpty()) {
+           return null;
         }
 
         return Collections.max(bridges, new Comparator<KnownBridge>() {
@@ -118,7 +125,7 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
         bridgeDiscovery = new BridgeDiscovery();
         // ALL Include [UPNP, IPSCAN, NUPNP] but in some nets UPNP and NUPNP is not working properly
         bridgeDiscovery.search(BridgeDiscovery.BridgeDiscoveryOption.ALL, bridgeDiscoveryCallback);
-        updateUI(UIState.BridgeDiscoveryRunning, "Scanning the network for hue bridges...");
+        updateUI(UIState.BridgeDiscoveryRunning, "Procurando por Hubs na rede...");
     }
 
     /**
@@ -147,11 +154,11 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
                         bridgeDiscoveryListView.setAdapter(new BridgeDiscoveryResultAdapter(getApplicationContext(), results));
                         bridgeDiscoveryResults = results;
 
-                        updateUI(UIState.BridgeDiscoveryResults, "Found " + results.size() + " bridge(s) in the network.");
+                        updateUI(UIState.BridgeDiscoveryResults, "Encontrou " + results.size() + " hub(s) na rede.");
                     } else if (returnCode == ReturnCode.STOPPED) {
-                        Log.i(TAG, "Bridge discovery stopped.");
+                        Log.i(TAG, "Busca de hubs pausado.");
                     } else {
-                        updateUI(UIState.Idle, "Error doing bridge discovery: " + returnCode);
+                        updateUI(UIState.Idle, "Erro na descoberta de hubs: " + returnCode);
                     }
                 }
             });
@@ -174,8 +181,8 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
 
         bridge.connect();
 
-        bridgeIpTextView.setText("Bridge IP: " + bridgeIp);
-        updateUI(UIState.Connecting, "Connecting to bridge...");
+        bridgeIpTextView.setText("IP do Hub: " + bridgeIp);
+        updateUI(UIState.Connecting, "Conectando ao hub...");
     }
 
     /**
@@ -200,19 +207,19 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
 
             switch (connectionEvent) {
                 case LINK_BUTTON_NOT_PRESSED:
-                    updateUI(UIState.Pushlinking, "Press the link button to authenticate.");
+                    updateUI(UIState.Pushlinking, "Pressione o botão da foto para autenticação.");
                     break;
 
                 case COULD_NOT_CONNECT:
-                    updateUI(UIState.Connecting, "Could not connect.");
+                    updateUI(UIState.Connecting, "Não foi possível conectar.");
                     break;
 
                 case CONNECTION_LOST:
-                    updateUI(UIState.Connecting, "Connection lost. Attempting to reconnect.");
+                    updateUI(UIState.Connecting, "Conexão Perdida. Tentando Reconectar.");
                     break;
 
                 case CONNECTION_RESTORED:
-                    updateUI(UIState.Connected, "Connection restored.");
+                    updateUI(UIState.Connected, "Conexão Restaurada.");
                     break;
 
                 case DISCONNECTED:
@@ -244,7 +251,7 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
                 case INITIALIZED:
                     // The bridge state was fully initialized for the first time.
                     // It is now safe to perform operations on the bridge state.
-                    updateUI(UIState.Connected, "Connected!");
+                    updateUI(UIState.Connected, "Conectado!");
                     break;
 
                 case LIGHTS_AND_GROUPS:
@@ -263,7 +270,7 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
      * the rate of requests sent to the bridge, therefore it is safe to
      * perform all light operations at once, even if there are dozens of lights.
      */
-    private void randomizeLights() {
+    private void sleepy() {
         BridgeState bridgeState = bridge.getBridgeState();
         List<LightPoint> lights = bridgeState.getLights();
 
@@ -271,8 +278,33 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
 
         for (final LightPoint light : lights) {
             final LightState lightState = new LightState();
-
             lightState.setHue(rand.nextInt(MAX_HUE));
+
+
+            light.updateState(lightState, BridgeConnectionType.LOCAL, new BridgeResponseCallback() {
+                @Override
+                public void handleCallback(Bridge bridge, ReturnCode returnCode, List<ClipResponse> list, List<HueError> errorList) {
+                    if (returnCode == ReturnCode.SUCCESS) {
+                        Log.i(TAG, "Changed hue of light " + light.getIdentifier() + " to " + lightState.getHue());
+                    } else {
+                        Log.e(TAG, "Error changing hue of light " + light.getIdentifier());
+                        for (HueError error : errorList) {
+                            Log.e(TAG, error.toString());
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    private void sleep() {
+        BridgeState bridgeState = bridge.getBridgeState();
+        List<LightPoint> lights = bridgeState.getLights();
+
+        for (final LightPoint light : lights) {
+            final LightState lightState = new LightState();
+            lightState.setOn(false);
+
 
             light.updateState(lightState, BridgeConnectionType.LOCAL, new BridgeResponseCallback() {
                 @Override
@@ -301,8 +333,12 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onClick(View view) {
-        if (view == randomizeLightsButton) {
-            randomizeLights();
+        if (view == sleepyButton) {
+            sleepy();
+        }
+
+        if (view == sleepButton) {
+            sleep();
         }
 
         if (view == bridgeDiscoveryButton) {
@@ -320,7 +356,8 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
                 bridgeDiscoveryListView.setVisibility(View.GONE);
                 bridgeIpTextView.setVisibility(View.GONE);
                 pushlinkImage.setVisibility(View.GONE);
-                randomizeLightsButton.setVisibility(View.GONE);
+                sleepyButton.setVisibility(View.GONE);
+                sleepButton.setVisibility(View.GONE);
                 bridgeDiscoveryButton.setVisibility(View.GONE);
 
                 switch (state) {
@@ -344,7 +381,8 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
                         break;
                     case Connected:
                         bridgeIpTextView.setVisibility(View.VISIBLE);
-                        randomizeLightsButton.setVisibility(View.VISIBLE);
+                        sleepyButton.setVisibility(View.VISIBLE);
+                        sleepButton.setVisibility(View.VISIBLE);
                         bridgeDiscoveryButton.setVisibility(View.VISIBLE);
                         break;
                 }

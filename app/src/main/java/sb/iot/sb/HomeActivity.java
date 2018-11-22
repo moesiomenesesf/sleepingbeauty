@@ -45,6 +45,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        final Intent i = new Intent(HomeActivity.this, LampActivity.class);
+        Button mLampada = (Button) findViewById(R.id.lampada);
+        mLampada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(i);
+            }
+        });
 
         //heartRateScanner = new HeartRateScanner(getApplicationContext(),getIntent());
 

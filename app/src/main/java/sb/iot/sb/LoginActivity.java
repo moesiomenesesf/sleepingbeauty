@@ -39,6 +39,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.philips.lighting.hue.sdk.wrapper.HueLog;
+import com.philips.lighting.hue.sdk.wrapper.Persistence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,6 +132,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
         }
+
     }
 
     private void populateAutoComplete() {
