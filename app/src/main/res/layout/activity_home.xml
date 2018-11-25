@@ -7,7 +7,7 @@
     android:background="#41134F"
     tools:context=".HomeActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -54,11 +54,36 @@
             android:id="@+id/lampada"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Lampada" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="53dp" />
+
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listView"
+            android:layout_below="@+id/starScanButton"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="starScan"
+            android:id="@+id/starScanButton"
+            android:layout_marginTop="43dp"
+             />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="stopScan"
+            android:id="@+id/stopScanButton"
+            android:layout_above="@+id/listView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="52dp" />
 
         <Button
             android:id="@+id/signout"
@@ -66,5 +91,5 @@
             android:layout_height="wrap_content"
             android:text="Sair" />
 
-    </LinearLayout>
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
