@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -38,6 +39,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.philips.lighting.hue.sdk.wrapper.HueLog;
+import com.philips.lighting.hue.sdk.wrapper.Persistence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +51,7 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -72,6 +76,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     //Firebase
     private FirebaseAuth mAuth;
+
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +107,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        Button mEmailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
+
+        final Intent intent = new Intent(LoginActivity.this,SignupActivity.class);
+
+        mEmailSignUpButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(intent);
+            }
+        });
+
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
@@ -114,6 +132,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
         }
+
     }
 
     private void populateAutoComplete() {
@@ -200,6 +219,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         final Intent intent = new Intent(this, HomeActivity.class);
 
+        mProgressDialog = ProgressDialog.show(LoginActivity.this, "Login", "Realizando login");
+        mProgressDialog.setCanceledOnTouchOutside(false); // main method that force user cannot click outside
+        mProgressDialog.setCancelable(true);
+
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
@@ -207,12 +231,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
 
+                        mProgressDialog.dismiss();
+
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
 
                             FirebaseUser user = mAuth.getCurrentUser();
 
-                            Toast.makeText(LoginActivity.this, "Bem vindo " + user.getEmail(),
+                            Toast.makeText(LoginActivity.this, "Usuário criado com sucesso",
                                     Toast.LENGTH_SHORT).show();
 
 

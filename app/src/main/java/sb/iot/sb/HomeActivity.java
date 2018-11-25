@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.zhaoxiaodan.miband.MiBand;
 
 import org.w3c.dom.Text;
 
@@ -20,6 +21,8 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
+
+    private HeartRateScanner heartRateScanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,18 @@ public class HomeActivity extends AppCompatActivity {
                 signOut();
             }
         });
+
+        final Intent i = new Intent(HomeActivity.this, LampActivity.class);
+        Button mLampada = (Button) findViewById(R.id.lampada);
+        mLampada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(i);
+            }
+        });
+
+        //heartRateScanner = new HeartRateScanner(getApplicationContext(),getIntent());
+
 
     }
 
