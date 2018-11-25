@@ -1,0 +1,51 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:1:1-14:12
+INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:1:1-14:12
+INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:1:1-14:12
+INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:1:1-14:12
+INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:1:1-14:12
+INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:1:1-14:12
+INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:1:1-14:12
+	package
+		ADDED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:1:11-45
+		INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
+		INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:4:11-36
+		INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
+		INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:3:11-34
+		INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
+		INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
+application
+ADDED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:6:5-10:19
+	android:label
+		ADDED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:8:9-41
+	android:allowBackup
+		ADDED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:7:9-35
+uses-permission#android.permission.BLUETOOTH
+ADDED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:12:5-67
+	android:name
+		ADDED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:12:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:13:5-73
+	android:name
+		ADDED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml:13:22-71
+uses-sdk
+INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
+INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
+INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
+INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
+		ADDED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
+		INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
+		ADDED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
+		INJECTED from /home/igor/AndroidStudioProjects/SB/miband-sdk/src/main/AndroidManifest.xml
