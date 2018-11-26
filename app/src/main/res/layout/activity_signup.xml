@@ -4,40 +4,208 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupActivity">
+    tools:context=".SignupActivity"
+    android:background="#6C47A1"
+    android:paddingBottom="13dp"
+    android:paddingLeft="13dp"
+    android:paddingRight="13dp"
+    android:paddingTop="13dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <AutoCompleteTextView
-            android:id="@+id/email"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="E-mail" />
+            android:backgroundTint="#fff"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Cadastro de Usuário"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="#fff"
+            android:textColorHighlight="#fff"
+            android:textColorHint="#fff"
+            android:textColorLink="@android:color/holo_purple"
+            android:textSize="25dp" />
 
-        <EditText
-            android:id="@+id/senha"
+        <android.support.v4.widget.Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:hint="Senha"/>
+            android:layout_height="30dp" />
 
-        <EditText
-            android:id="@+id/confirmarsenha"
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#fff"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="Nome"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#fff"
+                android:textColorHighlight="#fff"
+                android:textColorHint="#fff"
+                android:textColorLink="@android:color/holo_purple" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/sobrenome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#fff"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="Sobrenome"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#fff"
+                android:textColorHighlight="#fff"
+                android:textColorHint="#fff"
+                android:textColorLink="@android:color/holo_purple" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="15dp" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Confirmar Senha"
-            android:inputType="textPassword" />
+            android:text="Gênero"
+            android:textSize="18dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="#ffffff"
+            android:textColorHighlight="#fff"
+            android:textColorHint="#fff"
+            android:backgroundTint="#fff"
+            android:fontFamily="sans-serif-condensed"
+            android:textColorLink="@android:color/holo_purple"/>
+
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbmasculino"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Masculino"
+                android:textSize="18dp"
+                android:textColor="#ffffff"
+                android:textColorHighlight="#fff"
+                android:textColorHint="#fff"
+                android:backgroundTint="#fff"
+                android:fontFamily="sans-serif-condensed"
+                android:textColorLink="@android:color/holo_purple"/>
+
+            <RadioButton
+                android:id="@+id/rbfeminino"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Feminino"
+                android:textSize="18dp"
+                android:textColor="#ffffff"
+                android:textColorHighlight="#fff"
+                android:textColorHint="#fff"
+                android:backgroundTint="#fff"
+                android:fontFamily="sans-serif-condensed"
+                android:textColorLink="@android:color/holo_purple"/>
+        </RadioGroup>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#fff"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="Email"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#fff"
+                android:textColorHighlight="#fff"
+                android:textColorHint="#fff"
+                android:textColorLink="@android:color/holo_purple" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/senha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#fff"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="Senha"
+                android:imeActionId="6"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#fff"
+                android:textColorHighlight="#fff"
+                android:textColorHint="#fff"
+                android:textColorLink="@android:color/holo_purple" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/confirmarsenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#fff"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="Confirmar Senha"
+                android:imeActionId="6"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#fff"
+                android:textColorHighlight="#fff"
+                android:textColorHint="#fff"
+                android:textColorLink="@android:color/holo_purple" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
 
         <Button
             android:id="@+id/signup"
+            style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cadastrar" />
+            android:text="Cadastre-se"
+            android:textStyle="bold"
+            android:background="#fff"/>
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

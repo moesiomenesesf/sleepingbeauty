@@ -1,70 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#41134F"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:background="#6C47A1"
     tools:context=".HomeActivity">
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="333dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/username"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="333dp">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="307dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bem Vindo, "
+                    android:textSize="20dp"
+                    android:textColor="#fff"/>
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="30dp"
+                    android:textColor="#fff"/>
 
-            <TextView
-                android:id="@+id/textView3"
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="307dp">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="240dp"
+                    android:text="BPM"
+                    android:textAlignment="center"
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
+                    android:textSize="36sp"
+                    tools:layout_editor_absoluteX="154dp"
+                    tools:layout_editor_absoluteY="232dp" />
+
+                <TextView
+                    android:id="@+id/hrs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
+                    android:textSize="100sp"
+                    tools:layout_editor_absoluteX="154dp"
+                    tools:layout_editor_absoluteY="232dp" />
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/lampada"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="240dp"
-                android:text="BPM"
-                android:textAlignment="center"
-                android:textColor="@color/common_google_signin_btn_text_dark_default"
-                android:textSize="36sp"
-                tools:layout_editor_absoluteX="154dp"
-                tools:layout_editor_absoluteY="232dp" />
+                android:text="Adicionar Novo Smart Object"
+                android:drawableLeft="@drawable/ic_add_circle_black_24dp"
+                android:background="#fff"/>
 
-            <TextView
-                android:id="@+id/textView4"
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <Button
+                android:id="@+id/signout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:text="150"
-                android:textAlignment="center"
-                android:textColor="@color/common_google_signin_btn_text_dark_default"
-                android:textSize="100sp"
-                tools:layout_editor_absoluteX="154dp"
-                tools:layout_editor_absoluteY="232dp" />
+                android:text="Sair"
+                android:drawableLeft="@drawable/ic_exit_to_app_black_24dp"
+                android:background="#fff"/>
 
-        </FrameLayout>
 
-        <Button
-            android:id="@+id/lampada"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="53dp" />
-
-        <Button
-            android:id="@+id/signout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sair" />
-
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</FrameLayout>

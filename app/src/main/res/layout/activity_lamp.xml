@@ -62,4 +62,20 @@
         android:layout_height="wrap_content"
         android:text="Re-run bridge discovery" />
 
+    <Button
+        android:id="@+id/iniciarHrs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Inicar Heart Scan"
+        android:drawableLeft="@drawable/ic_play"/>
+
+    <Button
+        android:id="@+id/pararHrs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Inicar Heart Scan"
+        android:drawableLeft="@drawable/ic_stop"
+        android:visibility="gone"/>
+
+
 </LinearLayout>
