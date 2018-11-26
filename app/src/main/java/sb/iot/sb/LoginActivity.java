@@ -79,6 +79,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private ProgressDialog mProgressDialog;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -12,6 +12,7 @@ public class SBApplication extends Application {
         System.loadLibrary("huesdk");
     }
 
+
     @Override
     public void onCreate() {
         super.onCreate();

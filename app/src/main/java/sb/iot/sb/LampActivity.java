@@ -59,6 +59,12 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
     private Button sleepButton;
     private Button bridgeDiscoveryButton;
 
+
+    private HRScanTask hrsTask;
+
+    private Integer sleepCounter = 0;
+    private Boolean slept = false;
+
     enum UIState {
         Idle,
         BridgeDiscoveryRunning,
@@ -86,7 +92,7 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
         sleepButton = (Button)findViewById(R.id.sleep_button);
         sleepButton.setOnClickListener(this);
 
-        // Connect to a bridge or start the bridge discovery
+        // Connect to a bridgeheartRate or start the bridge discovery
         String bridgeIp = getLastUsedBridgeIp();
         if (bridgeIp == null) {
         startBridgeDiscovery();
@@ -94,8 +100,42 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
             connectToBridge(bridgeIp);
         }
 
+        this.hrsTask = new HRScanTask(new MiBandHRHandleListener() {
+            @Override
+            public void onReceive(Integer heartRate) {
+
+                heartRate = heartRate;
+
+                Log.d("heartRate",heartRate.toString());
+
+                if(heartRate <= 80){
+
+                    sleepCounter++;
+
+                    if(sleepCounter > 5 && !slept){
+
+                        sleep();
+                        slept = true;
+
+                    }
+
+
+
+                } else {
+
+                    sleepCounter = 0;
+
+                }
+
+            }
+        });
+
+
+
 
     }
+
+
 
     /**
      * Use the KnownBridges API to retrieve the last connected bridge
@@ -166,7 +206,7 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
     };
 
     /**
-     * Use the BridgeBuilder to create a bridge instance and connect to it
+     * Use the BridgeBuilder to create a bridge instance ands connect to it
      */
     private void connectToBridge(String bridgeIp) {
         stopBridgeDiscovery();
@@ -183,7 +223,7 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
 
         bridgeIpTextView.setText("IP do Hub: " + bridgeIp);
         updateUI(UIState.Connecting, "Conectando ao hub...");
-    }
+    };
 
     /**
      * Disconnect a bridge
@@ -253,6 +293,7 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
                     // It is now safe to perform operations on the bridge state.
                     updateUI(UIState.Connected, "Conectado!");
                     break;
+
 
                 case LIGHTS_AND_GROUPS:
                     // At least one light was updated.
@@ -387,6 +428,9 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
                         sleepyButton.setVisibility(View.VISIBLE);
                         sleepButton.setVisibility(View.VISIBLE);
                         bridgeDiscoveryButton.setVisibility(View.VISIBLE);
+
+                        hrsTask.execute();
+
                         break;
                 }
             }
