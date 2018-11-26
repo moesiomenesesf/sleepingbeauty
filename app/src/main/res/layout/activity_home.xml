@@ -7,7 +7,7 @@
     android:background="#41134F"
     tools:context=".HomeActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -91,5 +91,5 @@
             android:layout_height="wrap_content"
             android:text="Sair" />
 
-    </RelativeLayout>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

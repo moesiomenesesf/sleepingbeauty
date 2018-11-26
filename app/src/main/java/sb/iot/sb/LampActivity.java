@@ -279,8 +279,8 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
         for (final LightPoint light : lights) {
             final LightState lightState = new LightState();
 
-            lightState.setHue(rand.nextInt(MAX_HUE));
             lightState.setOn(true);
+            lightState.setHue(rand.nextInt(MAX_HUE));
 
             light.updateState(lightState, BridgeConnectionType.LOCAL, new BridgeResponseCallback() {
                 @Override
@@ -297,6 +297,8 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
             });
         }
     }
+
+
 
     private void sleep() {
         BridgeState bridgeState = bridge.getBridgeState();
