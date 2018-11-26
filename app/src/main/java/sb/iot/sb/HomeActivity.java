@@ -15,10 +15,13 @@ import com.zhaoxiaodan.miband.MiBand;
 
 import org.w3c.dom.Text;
 
+import sb.iot.entidades.Usuarios;
+
 public class HomeActivity extends AppCompatActivity {
 
     private TextView mUserNameView;
 
+    private TextView hrs;
 
     private FirebaseAuth mAuth;
 
@@ -27,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_home);
 
         this.mUserNameView = (TextView) findViewById(R.id.username);
@@ -35,7 +39,8 @@ public class HomeActivity extends AppCompatActivity {
 
         FirebaseUser user = mAuth.getCurrentUser();
 
-        mUserNameView.setText("Usuario logado é o : " + user.getEmail());
+        mUserNameView.setText(user.getEmail());
+
 
         Button mEmailSignInButton = (Button) findViewById(R.id.signout);
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {

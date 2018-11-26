@@ -58,6 +58,8 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
     private Button sleepyButton;
     private Button sleepButton;
     private Button bridgeDiscoveryButton;
+    private Button iniciarHrs;
+    private Button pararHrs;
 
     enum UIState {
         Idle,
@@ -71,6 +73,7 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_lamp);
 
         // Setup the UI
