@@ -27,10 +27,12 @@ import com.philips.lighting.hue.sdk.wrapper.domain.BridgeState;
 import com.philips.lighting.hue.sdk.wrapper.domain.HueError;
 import com.philips.lighting.hue.sdk.wrapper.domain.ReturnCode;
 import com.philips.lighting.hue.sdk.wrapper.domain.clip.ClipResponse;
+import com.philips.lighting.hue.sdk.wrapper.domain.device.light.LightConfiguration;
 import com.philips.lighting.hue.sdk.wrapper.domain.device.light.LightPoint;
 import com.philips.lighting.hue.sdk.wrapper.domain.device.light.LightState;
 import com.philips.lighting.hue.sdk.wrapper.knownbridges.KnownBridge;
 import com.philips.lighting.hue.sdk.wrapper.knownbridges.KnownBridges;
+import com.philips.lighting.hue.sdk.wrapper.utilities.HueColor;
 
 import org.w3c.dom.Text;
 
@@ -273,14 +275,17 @@ public class LampActivity extends AppCompatActivity implements AdapterView.OnIte
     private void sleepy() {
         BridgeState bridgeState = bridge.getBridgeState();
         List<LightPoint> lights = bridgeState.getLights();
-
-        Random rand = new Random();
+        LightConfiguration lightConfiguration;
 
         for (final LightPoint light : lights) {
             final LightState lightState = new LightState();
 
-            lightState.setHue(rand.nextInt(MAX_HUE));
+            lightConfiguration = light.getLightConfiguration();
             lightState.setOn(true);
+            HueColor color = new HueColor(new HueColor.RGB(255, 0, 0),
+                                          lightConfiguration.getModelIdentifier(),
+                                          lightConfiguration.getSwVersion()  );
+            lightState.setXY(color.getXY().x, color.getXY().y);
 
             light.updateState(lightState, BridgeConnectionType.LOCAL, new BridgeResponseCallback() {
                 @Override
